@@ -156,16 +156,27 @@ Por tanto, un incremento de al menos 10 dB respecto al nivel de silencio inicial
 
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal en
   tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
+  
+  ***Código completado satisfactoriamente, a continuación mostramos los datos obtenidos.***
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
+![alt text](Señal_Etiquetado_Manual_y_Automático.png)
+
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+***El sistema de detección de voz desarrollado funciona correctamente y ha demostrado ser útil para distinguir de forma automática las partes con voz y los silencios dentro de una señal de audio. En general, los resultados obtenidos coinciden bastante bien con el etiquetado manual, especialmente en los tramos donde la voz está claramente presente.***
+
+***Aun así, se han detectado pequeñas diferencias en el inicio o el final de algunos segmentos, y en ciertos casos el sistema divide una misma emisión en varios fragmentos por pausas muy cortas. Esto podría mejorarse ajustando algunos parámetros o aplicando una corrección posterior que agrupe tramos muy próximos entre sí.***
+
+***En resumen, el sistema ofrece buenos resultados y puede servir como una herramienta fiable para el análisis automático de señales de voz.***
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
 
+![alt text](Tasas_de_Sensibilidad.png)
 
 ### Trabajos de ampliación
 
@@ -180,7 +191,7 @@ Por tanto, un incremento de al menos 10 dB respecto al nivel de silencio inicial
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
 
-
+![alt text](Gestion_de_Opciones.png)
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
 - Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o 

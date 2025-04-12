@@ -17,6 +17,8 @@ typedef struct {
     int version;
     /* options with arguments */
     char *alpha0;
+    char *alpha1;
+    char *alpha2;
     char *input_wav;
     char *output_vad;
     char *output_wav;
@@ -41,6 +43,8 @@ const char help_message[] =
 "   -h, --help     Show this screen\n"
 "   --version      Show the version of the project\n"
 "   -0 FLOAT, --alpha0=FLOAT  input value alpha0 [default: 5]\n"
+"   -1 REAL, --alpha1=REAL  alpha 1 de decisió veu/silenci [default: 5]\n"
+"   -2 REAL, --alpha2=REAL  alpha 2 de decisió veu/silenci [default: 5]\n"
 "";
 
 const char usage_pattern[] =
@@ -275,6 +279,12 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
         } else if (!strcmp(option->olong, "--alpha0")) {
             if (option->argument)
                 args->alpha0 = option->argument;
+        } else if (!strcmp(option->olong, "--alpha1")) {
+            if (option->argument)
+                args->alpha1 = option->argument;
+        } else if (!strcmp(option->olong, "--alpha2")) {
+            if (option->argument)
+                args->alpha2 = option->argument;
         } else if (!strcmp(option->olong, "--input-wav")) {
             if (option->argument)
                 args->input_wav = option->argument;
@@ -304,7 +314,7 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
 
 DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
     DocoptArgs args = {
-        0, 0, 0, (char*) "5", NULL, NULL, NULL,
+        0, 0, 0, (char*) "5", (char*) "5", (char*) "5", NULL, NULL, NULL,
         usage_pattern, help_message
     };
     Tokens ts;
@@ -317,11 +327,13 @@ DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
         {"-v", "--verbose", 0, 0, NULL},
         {NULL, "--version", 0, 0, NULL},
         {"-0", "--alpha0", 1, 0, NULL},
+        {"-1", "--alpha1", 1, 0, NULL},
+        {"-2", "--alpha2", 1, 0, NULL},
         {"-i", "--input-wav", 1, 0, NULL},
         {"-o", "--output-vad", 1, 0, NULL},
         {"-w", "--output-wav", 1, 0, NULL}
     };
-    Elements elements = {0, 0, 7, commands, arguments, options};
+    Elements elements = {0, 0, 9, commands, arguments, options};
 
     ts = tokens_new(argc, argv);
     if (parse_args(&ts, &elements))

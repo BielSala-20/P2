@@ -2,9 +2,7 @@
 
 # Be sure that this file has execution permissions:
 # Use the nautilus explorer or chmod +x run_vad.sh
-export LC_ALL=C
 
-alpha0=${1:-5}
 # Establecemos que el código de retorno de un pipeline sea el del último programa con código de retorno
 # distinto de cero, o cero si todos devuelven cero.
 set -o pipefail
@@ -12,8 +10,16 @@ set -o pipefail
 # Write here the name and path of your program and database
 DIR_P2=$HOME/PAV/P2
 DB=$DIR_P2/db.v4
-CMD="$DIR_P2/bin/vad -0 $alpha0"
+CMD="$DIR_P2/bin/vad"
 
+if [ $# -eq 1 ]
+  then
+    CMD="$DIR_P2/bin/vad --alfa1=$1"
+fi
+if [ $# -eq 2 ]
+  then
+    CMD="$DIR_P2/bin/vad --alfa1=$1 --alfa2=$2"
+fi
 
 for filewav in $DB/*/*wav; do
 #    echo
@@ -24,8 +30,9 @@ for filewav in $DB/*/*wav; do
     fi
 
     filevad=${filewav/.wav/.vad}
-
+    #fileout=${filewav/.wav/_out.wav}
     $CMD -i $filewav -o $filevad || exit 1
+    #$CMD -i $filewav -o $filevad -w $fileout || exit 1
 
 # Alternatively, uncomment to create output wave files
 #    filewavOut=${filewav/.wav/.vad.wav}

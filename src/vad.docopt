@@ -13,3 +13,5 @@ Options:
    -h, --help     Show this screen
    --version      Show the version of the project
    -0 FLOAT, --alpha0=FLOAT  input value alpha0 [default: 5]
+   -1 REAL, --alpha1=REAL  alpha 1 de decisió veu/silenci [default: 5]
+   -2 REAL, --alpha2=REAL  alpha 2 de decisió veu/silenci [default: 5]
