@@ -136,16 +136,21 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
-
+![alt text](Pot_CrucesPorCero_Etiquetas_LopezSala.png)
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
-	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
-	  estar seguros de que un segmento de señal se corresponde con voz.
+* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para estar seguros de que un segmento de señal se corresponde con voz.
 
-	* Duración mínima razonable de los segmentos de voz y silencio.
+***El nivel de potencia correspondiente al silencio inicial se encuentra aproximadamente entre -50 dB y -40 dB. En los segmentos donde se observa claramente la presencia de voz, el nivel de potencia asciende de forma consistente por encima de -30 dB.
+Por tanto, un incremento de al menos 10 dB respecto al nivel de silencio inicial (es decir, alcanzar valores por encima de -30 dB) puede considerarse un umbral adecuado para identificar con seguridad la presencia de voz.***
 
-	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+* Duración mínima razonable de los segmentos de voz y silencio.
 
+***Para realizar una segmentación fiable, viendo la imagen hemos considerado razonable establecer una duración mínima de 200–300 ms para los segmentos de voz y de al menos 100 ms para los segmentos de silencio. Estos valores ayudan a evitar errores de clasificación debidos a ruidos transitorios o pausas breves entre sonidos.***
+
+* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+
+***La ZCR es un indicador útil para reforzar la detección de voz. Su evolución permite distinguir entre voz (ZCR alta) y silencio (ZCR baja), y resulta especialmente útil cuando se combina con el nivel de potencia. Un aumento simultáneo de la potencia y de la ZCR proporciona una fuerte evidencia de que el segmento corresponde a una señal de voz. Así, la ZCR actúa como una medida complementaria que mejora la precisión de la segmentación.***
 
 ### Desarrollo del detector de actividad vocal
 
